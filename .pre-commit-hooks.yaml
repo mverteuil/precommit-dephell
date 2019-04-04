@@ -1,0 +1,7 @@
+- id: poetry-setup
+  name: Python package compatibility
+  description: Generate requirements.txt and setup.py from pyproject.toml for backwards compatibility.
+  language: system
+  entry: poetry run poetry-setup
+  files: "^pyproject.toml$"
+  pass_filenames: false
