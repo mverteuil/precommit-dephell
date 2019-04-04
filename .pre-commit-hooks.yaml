@@ -1,7 +1,20 @@
-- id: poetry-setup
-  name: Python package compatibility
-  description: Generate requirements.txt and setup.py from pyproject.toml for backwards compatibility.
+- id: pyproject-toml-to-setup-py
+  name: Convert pyproject.toml to setup.py
+  description: Generate setup.py from pyproject.toml for backwards compatibility using 'dephell'.
   language: system
-  entry: poetry run poetry-setup
+  entry: dephell deps convert --from=pyproject.toml --to=setup.py
   files: "^pyproject.toml$"
+  pass_filenames: false
+- id: pyproject-toml-to-requirements-txt
+  name: Convert pyproject.toml to requirements.txt
+  description: Generate requirements.txt pyproject.toml for backwards compatibility using 'dephell'.
+  language: system
+  entry: dephell deps convert --from=pyproject.toml --to=requirements.txt
+  files: "^pyproject.toml$"
+  pass_filenames: false
+- id: dephell
+  name: Run dephell with defaults
+  description: Generate default output based on configuration in pyproject.toml. See https://dephell.readthedocs.io for configuration options.
+  language: system
+  entry: dephell deps convert
   pass_filenames: false
